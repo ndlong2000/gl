@@ -41,9 +41,9 @@ void GSPlay::Init()
 	m_score = std::make_shared< Text>(shader, font, "score: 10", TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
 
-	auto shader1 = ResourceManagers::GetInstance()->GetShader("AnimationShader");
+	shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
 	texture = ResourceManagers::GetInstance()->GetTexture("coin");
-	std::shared_ptr<AnimationSprite> animation = std::make_shared<AnimationSprite>(model, shader1, texture,6,0.1f)
+	std::shared_ptr<AnimationSprite> animation = std::make_shared<AnimationSprite>(model, shader, texture,6,0.1f)
 		;	animation->Set2DPosition(screenWidth / 2, screenHeight/2);
 	animation->SetSize(50, 50);
 	m_listAnimation.push_back(animation);
