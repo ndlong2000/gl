@@ -1,5 +1,4 @@
 #include "AnimationSprite.h"
-
 #include "Shaders.h"
 #include "Models.h"
 #include "Camera.h"
@@ -18,17 +17,37 @@ void AnimationSprite::CaculateWorldMatrix()
 	m_WorldMat = m_Sc * m_T;
 }
 
-AnimationSprite::AnimationSprite(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, GLint numFrames, GLfloat frameTime)
-	: BaseObject()
+AnimationSprite::AnimationSprite(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture, float numFrames, float frameTime)
+	: Sprite2D(model, shader, texture)
+{
+	//m_pModel = model;
+	//m_pShader = shader;
+	//m_pCamera = nullptr;
+	//m_pTexture = texture;
+
+	u_numFrames = numFrames;
+	m_frameTime = frameTime;
+	u_currentFrame = 0;
+	m_currentTime = 0;
+
+	//m_Vec3Position = Vector3(0, 0, 0);
+	//m_iHeight = 50;
+	//m_iWidth = 100;
+	//m_Vec3Scale = Vector3((float)m_iWidth / screenWidth, (float)m_iHeight / screenHeight, 1);
+}
+
+AnimationSprite::AnimationSprite(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, Vector4 color, float numFrames, float frameTime)
+	: Sprite2D(model, shader, color)
 {
 	m_pModel = model;
 	m_pShader = shader;
 	m_pCamera = nullptr;
-	m_pTexture = texture;
-	m_numFrames = numFrames;
+	m_pTexture = nullptr;
+	m_Color = color;
+	u_numFrames = numFrames;
 	m_frameTime = frameTime;
-	m_currentFrame = 0;
-	m_currentTime = 0.0f;
+	u_currentFrame = 0;
+	m_currentTime = 0;
 
 	m_Vec3Position = Vector3(0, 0, 0);
 	m_iHeight = 50;
@@ -89,25 +108,27 @@ void AnimationSprite::Draw()
 		glVertexAttribPointer(iTempShaderVaribleGLID, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), VETEX_UV);
 	}
 
-	//iTempShaderVaribleGLID = -1;
-	//iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_alpha");
-	//if (iTempShaderVaribleGLID != -1)
-	//	glUniform1f(iTempShaderVaribleGLID, 1.0);
+	iTempShaderVaribleGLID = -1;
+	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_alpha");
+	if (iTempShaderVaribleGLID != -1)
+		glUniform1f(iTempShaderVaribleGLID, 1.0);
+
+	iTempShaderVaribleGLID = -1;
+	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_numFrames");
+	if (iTempShaderVaribleGLID != -1)
+		glUniform1f(iTempShaderVaribleGLID, u_numFrames);
+
+	iTempShaderVaribleGLID = -1;
+	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_currentFrame");
+	if (iTempShaderVaribleGLID != -1)
+		glUniform1f(iTempShaderVaribleGLID, u_currentFrame);
 
 	iTempShaderVaribleGLID = -1;
 	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_matMVP");
 	if (iTempShaderVaribleGLID != -1)
 		glUniformMatrix4fv(iTempShaderVaribleGLID, 1, GL_FALSE, matrixWVP.m[0]);
 
-	iTempShaderVaribleGLID = -1;
-	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_numFrames");
-	if (iTempShaderVaribleGLID != -1)
-		glUniform1f(iTempShaderVaribleGLID, m_numFrames);
 
-	iTempShaderVaribleGLID = -1;
-	iTempShaderVaribleGLID = m_pShader->GetUniformLocation((char*)"u_currentFrame");
-	if (iTempShaderVaribleGLID != -1)
-		glUniform1f(iTempShaderVaribleGLID, m_currentFrame);
 
 	glDrawElements(GL_TRIANGLES, m_pModel->GetNumIndiceObject(), GL_UNSIGNED_INT, 0);
 
@@ -119,18 +140,28 @@ void AnimationSprite::Draw()
 
 void AnimationSprite::Update(GLfloat deltatime)
 {
-	// Animation
 	m_currentTime += deltatime;
 
-	if (m_currentTime >= m_frameTime)
-	{
-		m_currentFrame++;
-		if (m_currentFrame >= m_numFrames)
-			m_currentFrame = 0;
+	if (m_currentTime >= m_frameTime) {
+		u_currentFrame++;
+		if (u_currentFrame >= u_numFrames) {
+			u_currentFrame = 0;
+		}
 		m_currentTime -= m_frameTime;
 	}
 }
 
+
+
+void AnimationSprite::SetText(std::string text)
+{
+	m_Text = text;
+}
+
+std::string AnimationSprite::GetText()
+{
+	return m_Text;
+}
 
 void AnimationSprite::Set2DPosition(GLfloat width, GLfloat height)
 {

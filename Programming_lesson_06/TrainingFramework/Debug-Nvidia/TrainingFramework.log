@@ -15,6 +15,18 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warn
               _Ty=Text
           ]
   c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(41): note: see reference to function template instantiation 'std::shared_ptr<Text> std::make_shared<Text,std::shared_ptr<Shaders>&,std::shared_ptr<Font>&,const char(&)[10],TEXT_COLOR,double>(std::shared_ptr<Shaders> &,std::shared_ptr<Font> &,const char (&)[10],TEXT_COLOR &&,double &&)' being compiled
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Models>&,std::shared_ptr<Shaders>&,std::shared_ptr<Texture>&,int,float>(std::shared_ptr<Models> &,std::shared_ptr<Shaders> &,std::shared_ptr<Texture> &,int &&,float &&)' being compiled
+          with
+          [
+              _Ty=AnimationSprite
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<std::shared_ptr<Models>&,std::shared_ptr<Shaders>&,std::shared_ptr<Texture>&,int,float>(std::shared_ptr<Models> &,std::shared_ptr<Shaders> &,std::shared_ptr<Texture> &,int &&,float &&)' being compiled
+          with
+          [
+              _Ty=AnimationSprite
+          ]
+  c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gamestates\gsplay.cpp(46): note: see reference to function template instantiation 'std::shared_ptr<AnimationSprite> std::make_shared<AnimationSprite,std::shared_ptr<Models>&,std::shared_ptr<Shaders>&,std::shared_ptr<Texture>&,int,float>(std::shared_ptr<Models> &,std::shared_ptr<Shaders> &,std::shared_ptr<Texture> &,int &&,float &&)' being compiled
   GSMenu.cpp
 c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(26): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
 c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gamestates\gsmenu.cpp(32): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
@@ -74,12 +86,10 @@ c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gam
   GameButton.cpp
   Font.cpp
   AnimationSprite.cpp
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(105): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(110): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(140): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(141): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(151): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(152): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(171): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(172): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(182): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\long\desktop\gltrain\gl\programming_lesson_06\trainingframework\src\gameobject\animationsprite.cpp(183): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   ResourceManagers.cpp
   Generating Code...
 Application.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
