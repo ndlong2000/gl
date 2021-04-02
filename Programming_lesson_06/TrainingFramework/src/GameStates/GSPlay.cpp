@@ -26,7 +26,7 @@ GSPlay::~GSPlay()
 void GSPlay::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play.tga");
 
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -43,7 +43,7 @@ void GSPlay::Init()
 
 	//Animation
 	shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
-	texture = ResourceManagers::GetInstance()->GetTexture("coin");
+	texture = ResourceManagers::GetInstance()->GetTexture("coin.tga");
 	std::shared_ptr<AnimationSprite> animation = std::make_shared<AnimationSprite>(model, shader, texture,6,0.1f)
 		;	animation->Set2DPosition(screenWidth / 2, screenHeight/2);
 	animation->SetSize(50, 50);

@@ -32,7 +32,7 @@ public:
 	std::shared_ptr<Texture> GetTexture(const std::string& name);
 	std::shared_ptr<Models> GetModel(const std::string& name);
 	std::shared_ptr<Font> GetFont(const std::string& name);
-	std::shared_ptr<SoLoud::Soloud> m_Soloud;
+	SoLoud::Soloud m_Soloud;
 
 	//Long add Sound
 	void AddSound(const std::string& name);

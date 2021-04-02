@@ -18,7 +18,7 @@ GSMenu::~GSMenu()
 void GSMenu::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("menu1");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("menu1.tga");
 
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -27,7 +27,7 @@ void GSMenu::Init()
 	m_BackGround->SetSize(screenWidth, screenHeight);
 
 	//play button
-	texture = ResourceManagers::GetInstance()->GetTexture("button_play");
+	texture = ResourceManagers::GetInstance()->GetTexture("button_play.tga");
 	std::shared_ptr<GameButton> button = std::make_shared<GameButton>(model, shader, texture)
 ;	button->Set2DPosition(screenWidth / 2, 200);
 	button->SetSize(200, 50);
@@ -38,7 +38,7 @@ void GSMenu::Init()
 
 
 	//setting button
-	texture = ResourceManagers::GetInstance()->GetTexture("button_setting");
+	texture = ResourceManagers::GetInstance()->GetTexture("button_setting.tga");
 	button = std::make_shared<GameButton>(model, shader, texture);
 	button->Set2DPosition(screenWidth / 2, 300);
 	button->SetSize(200, 50);
@@ -49,7 +49,7 @@ void GSMenu::Init()
 	
 	
 	//exit button
-	texture = ResourceManagers::GetInstance()->GetTexture("button_quit");
+	texture = ResourceManagers::GetInstance()->GetTexture("button_quit.tga");
 	button = std::make_shared<GameButton>(model, shader, texture);
 	button->Set2DPosition(screenWidth / 2, 400);
 	button->SetSize(200, 50);

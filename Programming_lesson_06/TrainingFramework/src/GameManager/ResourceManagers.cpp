@@ -19,8 +19,8 @@ ResourceManagers::ResourceManagers()
 	
 	// Sound
 	m_SoundPath = dataPath + "Sounds\\"; 
-	m_Soloud = std::make_shared<SoLoud::Soloud>();
-	m_Soloud->init();
+	m_Soloud = SoLoud::Soloud();
+	m_Soloud.init();
 }
 
 ResourceManagers::~ResourceManagers()
@@ -131,7 +131,7 @@ std::shared_ptr<Texture> ResourceManagers::GetTexture(const std::string& name)
 		return it->second;
 	}
 	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-	std::string file = m_TexturePath + name + ".tga";
+	std::string file = m_TexturePath + name;// +".tga";
 	texture->Init(file.c_str(), GL_CLAMP_TO_EDGE, GL_LINEAR_MIPMAP_LINEAR);
 	m_MapTexture.insert(std::pair<std::string, std::shared_ptr<Texture>>(name, texture));
 	return texture;
@@ -194,7 +194,7 @@ void ResourceManagers::PlaySound(const std::string& name, bool loop)
 		wave->load(wav.c_str());
 		m_MapWave.insert(std::pair<std::string, std::shared_ptr<SoLoud::Wav>>(name, wave));
 	}
-	m_Soloud->play(*wave);
+	m_Soloud.play(*wave);
 }
 void ResourceManagers::PauseSound(const std::string& name) {
 	std::shared_ptr<SoLoud::Wav> wave;
@@ -202,5 +202,5 @@ void ResourceManagers::PauseSound(const std::string& name) {
 	if (it != m_MapWave.end()) {
 		wave = it->second;
 	}
-	m_Soloud->stopAudioSource(*wave);
+	m_Soloud.stopAudioSource(*wave);
 }
